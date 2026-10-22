@@ -1,0 +1,195 @@
+/* ==========================================================================
+   Next.js port: glue for the React components + a few extra polish touches.
+   Everything below is additive; the original template CSS is untouched.
+   ========================================================================== */
+
+/* Never show a horizontal scrollbar while items slide in from the side */
+body {
+  overflow-x: hidden;
+}
+
+/* The original used jQuery to set these heights to the window height */
+.js-fullheight {
+  height: 100vh !important;
+}
+@supports (height: 100dvh) {
+  .js-fullheight {
+    height: 100dvh !important;
+  }
+}
+
+/* Page transition (see app/template.tsx) */
+.page-transition {
+  animation: pageIn 0.6s ease both;
+}
+@keyframes pageIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile menu: slide down instead of popping in */
+@media (max-width: 991.98px) {
+  .navbar-collapse.show {
+    animation: navSlideDown 0.3s ease-out;
+  }
+}
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desktop nav: underline grows from the left on hover / active page */
+@media (min-width: 992px) {
+  .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+    position: relative;
+  }
+  .ftco-navbar-light .navbar-nav > .nav-item > .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 1.15rem;
+    height: 2px;
+    background: #e52b34;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover::after,
+  .ftco-navbar-light .navbar-nav > .nav-item.active > .nav-link::after {
+    transform: scaleX(1);
+  }
+  .ftco-navbar-light.scrolled .navbar-nav > .nav-item > .nav-link::after {
+    bottom: 0.4rem;
+  }
+}
+
+/* Booking form: date/time fields keep the original "Check-In" / "Time" look */
+.appointment-form .input-wrap {
+  position: relative;
+}
+.appointment-form input[type="date"],
+.appointment-form input[type="time"] {
+  position: relative;
+  color-scheme: dark;
+}
+.appointment-form input[type="date"]::-webkit-calendar-picker-indicator,
+.appointment-form input[type="time"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.appointment-form .form-control.is-empty:not(:focus) {
+  color: transparent !important;
+}
+.appointment-form .picker-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+}
+.appointment-form .form-control.is-empty:focus + .picker-placeholder {
+  display: none;
+}
+.appointment-form select.form-control option {
+  color: #000;
+}
+
+/* Carousel buttons render <button>s; keep them clean */
+.owl-carousel .owl-nav button,
+.owl-carousel .owl-dots button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+/* Map: Google embed instead of the old keyed Maps JS, tinted grey like the original style */
+#map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  border: 0;
+  filter: grayscale(1) contrast(1.05);
+}
+
+/* next/image avatars keep their original CSS width and a natural height */
+.comment-list li .vcard img {
+  height: auto;
+}
+
+/* Hover polish */
+.blog-entry {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.blog-entry:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.35);
+}
+.menus .menu-img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.menus:hover .menu-img {
+  transform: scale(1.08);
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: #e52b34;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  box-shadow: 0 10px 24px -8px rgba(229, 43, 52, 0.7);
+  cursor: pointer;
+}
+.back-to-top:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Respect "reduce motion" */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition,
+  .navbar-collapse.show {
+    animation: none;
+  }
+  .blog-entry,
+  .menus .menu-img {
+    transition: none;
+  }
+  .blog-entry:hover,
+  .menus:hover .menu-img {
+    transform: none;
+  }
+}
+.welcome-pizza {
+  width: 150%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transform: translateX(70px) scale(1.1);
+}
