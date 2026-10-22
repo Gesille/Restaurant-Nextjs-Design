@@ -17,8 +17,8 @@ import ScrollProgress from "@/components/ScrollProgress";
 import Topbar from "@/components/Topbar";
 
 export const metadata: Metadata = {
-  title: { default: "Taste.it Restaurant", template: "%s | Taste.it" },
-  description: "Taste.it restaurant: menu, master chefs, table reservations and news.",
+  title: { default: "ASHTAR MISHOO Restaurant", template: "%s | Ashtar mishoo" },
+  description: "ASHTAR MISHOO restaurant: menu, master chefs, table reservations and news.",
   icons: {
     icon: "/logo/logo.png", 
   }
