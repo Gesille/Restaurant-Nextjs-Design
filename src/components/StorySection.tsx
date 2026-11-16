@@ -52,7 +52,7 @@ export default function StorySection() {
               {/* main photo */}
               <div className="photo" style={{ position: "absolute", inset: 0, overflow: "hidden", boxShadow: "0 40px 80px rgba(40,20,10,.32)" }}>
                 <Image
-                  src="/images/bg_3.jpg"
+                  src="/images/bg_3.webp"
                   alt="Freshly prepared food at Ashtar Mishoo"
                   fill
                   sizes="(max-width: 991px) 100vw, 50vw"
